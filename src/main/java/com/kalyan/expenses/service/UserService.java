@@ -3,6 +3,7 @@ package com.kalyan.expenses.service;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,21 +13,22 @@ import com.kalyan.expenses.exception.ItemExistsException;
 import com.kalyan.expenses.exception.ResourceNotFoundException;
 import com.kalyan.expenses.repository.UserRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class UserService {
 
 	private final UserRepository userRepository;
-
-	public UserService(UserRepository userRepository) {
-		super();
-		this.userRepository = userRepository;
-	}
+	
+	private final PasswordEncoder encoder;
 
 	@Transactional
 	public User saveUser(UserDTO dto) {
 		if (userRepository.existsByEmail(dto.getEmail())) {
 			throw new ItemExistsException("user with email already exists: " + dto.getEmail());
 		}
+		dto.setPassword(encoder.encode(dto.getPassword()));
 		User user = new User();
 		BeanUtils.copyProperties(dto, user);
 		return userRepository.save(user);
@@ -38,7 +40,7 @@ public class UserService {
 		existingUser.setAge(dto.getAge() != 0 ? dto.getAge() : existingUser.getAge());
 		existingUser.setEmail(dto.getEmail() != null ? dto.getEmail() : existingUser.getEmail());
 		existingUser.setUserName(dto.getUserName() != null ? dto.getUserName() : existingUser.getUserName());
-		existingUser.setPassword(dto.getPassword() != null ? dto.getPassword() : existingUser.getPassword());
+		existingUser.setPassword(dto.getPassword() != null ? encoder.encode(dto.getPassword()) : existingUser.getPassword());
 		return userRepository.save(existingUser);
 	}
 

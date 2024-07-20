@@ -18,17 +18,14 @@ import com.kalyan.expenses.entity.User;
 import com.kalyan.expenses.service.UserService;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/user")
+@RequiredArgsConstructor
 public class UserController {
 
 	private final UserService userService;
-
-	public UserController(UserService userService) {
-		super();
-		this.userService = userService;
-	}
 
 	@PostMapping
 	public ResponseEntity<User> saveUser(@Valid @RequestBody UserDTO dto) {

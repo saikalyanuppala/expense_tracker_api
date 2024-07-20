@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -53,6 +54,18 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		ErrorObject errorObject = new ErrorObject();
 		errorObject.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
 		errorObject.setMessage("GeneralException : " + ex.getMessage());
+		errorObject.setTimestamp(LocalDate.now());
+
+		ex.printStackTrace();
+		return new ResponseEntity<ErrorObject>(errorObject, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@ExceptionHandler(UsernameNotFoundException.class)
+	public ResponseEntity<ErrorObject> handleUserNameNotFoundException(Exception ex, WebRequest request) {
+
+		ErrorObject errorObject = new ErrorObject();
+		errorObject.setStatusCode(HttpStatus.UNAUTHORIZED.value());
+		errorObject.setMessage("Username not found : " + ex.getMessage());
 		errorObject.setTimestamp(LocalDate.now());
 
 		ex.printStackTrace();

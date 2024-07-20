@@ -5,7 +5,7 @@ import java.util.Random;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("auditorAware")
 public class AuditorAwareImpl implements AuditorAware<Integer> {
 
 	@Override
