@@ -1,0 +1,366 @@
+{
+	"info": {
+		"_postman_id": "48b1616d-02fa-41cc-94ea-0d01a74f49b6",
+		"name": "Expenses",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6242758"
+	},
+	"item": [
+		{
+			"name": "Find All Expenses",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW5kcmEyQGdtYWlsLmNvbSIsImlhdCI6MTcyMTU2NzAxOCwiZXhwIjoxNzIxNTY4NDU4fQ.kUzsYQMPq467z4qawFm58JBtb1qPDspo6PeQ7eW_1vk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/expense",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"expense"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Expense By Id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW5kcmEyQGdtYWlsLmNvbSIsImlhdCI6MTcyMTU2NzAxOCwiZXhwIjoxNzIxNTY4NDU4fQ.kUzsYQMPq467z4qawFm58JBtb1qPDspo6PeQ7eW_1vk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/expense/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"expense",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Expense By Name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/expense/name/Water bill",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"expense",
+						"name",
+						"Water bill"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Expense",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW5kcmEyQGdtYWlsLmNvbSIsImlhdCI6MTcyMTU2ODU4NSwiZXhwIjoxNzIxNTcwMDI1fQ.PDbKz6HT_1Fz36m8gNufmjgJBM2NAhOBx0-i-u9sh3s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \r\n    \"name\": \"GHMC bill\",\r\n    \"description\": \"GHMC bill\",\r\n    \"amount\": 12000.00,\r\n    \"category\": \"Bills\",\r\n    \"date\": \"2024-05-05\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/expense",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"expense"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Expense By Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/expense/8",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"expense",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Expenses By Criteria",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\":300,\r\n    \"category\":\"Fees\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/expense/all/criteria",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"expense",
+						"all",
+						"criteria"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Expense By Example",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\":300,\r\n    \"category\":\"FEES\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/expense/all/example",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"expense",
+						"all",
+						"example"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find All Expenses By Pagination",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/expense/all/page?page=1&size=4&sort=id,desc&sort=name,asc",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"expense",
+						"all",
+						"page"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "size",
+							"value": "4"
+						},
+						{
+							"key": "sort",
+							"value": "id,desc"
+						},
+						{
+							"key": "sort",
+							"value": "name,asc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\":\"shiva\",\r\n    \"email\":\"shiva@gmail.com\",\r\n    \"password\":112233,\r\n    \"age\":75\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/user",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find All Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/user/all",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\":\"shiva narayan\",\r\n    \"age\":80\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/user/3",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register User",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\":\"sandra2\",\r\n    \"email\":\"sandra2@gmail.com\",\r\n    \"password\":\"sandra123\",\r\n    \"age\":100\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/register",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login User",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"sandra2@gmail.com\",\r\n    \"password\":\"sandra123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/login1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"login1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
