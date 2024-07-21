@@ -9,16 +9,6 @@
 		{
 			"name": "Find All Expenses",
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW5kcmEyQGdtYWlsLmNvbSIsImlhdCI6MTcyMTU2NzAxOCwiZXhwIjoxNzIxNTY4NDU4fQ.kUzsYQMPq467z4qawFm58JBtb1qPDspo6PeQ7eW_1vk",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -36,16 +26,6 @@
 		{
 			"name": "Find Expense By Id",
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW5kcmEyQGdtYWlsLmNvbSIsImlhdCI6MTcyMTU2NzAxOCwiZXhwIjoxNzIxNTY4NDU4fQ.kUzsYQMPq467z4qawFm58JBtb1qPDspo6PeQ7eW_1vk",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -83,16 +63,6 @@
 		{
 			"name": "Save Expense",
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW5kcmEyQGdtYWlsLmNvbSIsImlhdCI6MTcyMTU2ODU4NSwiZXhwIjoxNzIxNTcwMDI1fQ.PDbKz6HT_1Fz36m8gNufmjgJBM2NAhOBx0-i-u9sh3s",
-							"type": "string"
-						}
-					]
-				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -122,13 +92,13 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/expense/8",
+					"raw": "{{url}}/expense/5",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"expense",
-						"8"
+						"5"
 					]
 				}
 			},
@@ -240,7 +210,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"userName\":\"shiva\",\r\n    \"email\":\"shiva@gmail.com\",\r\n    \"password\":112233,\r\n    \"age\":75\r\n}",
+					"raw": "{\r\n    \"userName\":\"shiva1\",\r\n    \"email\":\"shiva1@gmail.com\",\r\n    \"password\":112233,\r\n    \"age\":75\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -335,6 +305,35 @@
 		},
 		{
 			"name": "Login User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"get auth token if status is 200\", function(){\r",
+							"if(pm.response.code === 200){\r",
+							"    console.log('token is '+pm.response.json().token);\r",
+							"    pm.environment.set(\"expenseAuthToken\",pm.response.json().token);\r",
+							"    console.log()\r",
+							"}\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -361,6 +360,38 @@
 				}
 			},
 			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW5kcmEyQGdtYWlsLmNvbSIsImlhdCI6MTcyMTU4MDY0OCwiZXhwIjoxNzIxNTgyMDg4fQ.AFp_J32kGgo63YJMeqMBShCJdIWlbK4bcdDz2uuhF5s",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
