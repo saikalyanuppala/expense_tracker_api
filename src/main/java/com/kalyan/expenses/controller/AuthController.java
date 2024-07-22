@@ -23,12 +23,12 @@ public class AuthController {
 	private final UserService userService;
 	private final AuthenticationManager authManager;
 
-	@PostMapping("/login")
+	@PostMapping("/login1")
 	public ResponseEntity<String> login(@RequestBody LoginDTO dto) {
 		Authentication auth = authManager
 				.authenticate(new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(auth);
-		return ResponseEntity.ok("logged in user suucess");
+		return ResponseEntity.ok("logged in user success");
 	}
 
 	@PostMapping("/register")

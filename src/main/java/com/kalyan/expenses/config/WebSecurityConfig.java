@@ -28,10 +28,9 @@ public class WebSecurityConfig {
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.csrf(AbstractHttpConfigurer::disable)
 		        .authorizeHttpRequests(req -> req
-		        		.requestMatchers("/login","/register").permitAll()
+		        		.requestMatchers("/login1","/register").permitAll()
 		        		.anyRequest().authenticated())
 				.httpBasic(Customizer.withDefaults())
-				.formLogin(Customizer.withDefaults())
 				.authenticationProvider(authenticationProvider());
 		return http.build();
 	}
