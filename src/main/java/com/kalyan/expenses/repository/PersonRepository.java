@@ -15,6 +15,6 @@ public interface PersonRepository extends JpaRepository<Person, Integer> {
 	@Query("select p from Person p join p.emails e where e = :email")
 	Optional<Person> findByEmail(@Param("email") String email);
 
-	@Query(value = "select * from person p where p.mobile_numbers like %:number%", nativeQuery = true)
-	Optional<Person> findByMobileNumberLike(@Param("number") String number);
+	//@Query(value = "select * from person p where p.mobile_numbers like %:number%", nativeQuery = true)
+	//Optional<Person> findByMobileNumberLike(@Param("number") String number);
 }

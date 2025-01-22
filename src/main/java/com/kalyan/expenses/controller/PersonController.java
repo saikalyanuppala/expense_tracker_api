@@ -52,9 +52,9 @@ public class PersonController {
 		return ResponseEntity.ok(person.orElseThrow(() -> new ResourceNotFoundException("person not found " + email)));
 	}
 
-	@GetMapping("mobile/{mobile}")
-	public ResponseEntity<Person> findPersonByMobileNumber(@PathVariable String mobile) {
-		Optional<Person> person = personRepository.findByMobileNumberLike(mobile);
-		return ResponseEntity.ok(person.orElseThrow(() -> new ResourceNotFoundException("person not found " + mobile)));
-	}
+//	@GetMapping("mobile/{mobile}")
+//	public ResponseEntity<Person> findPersonByMobileNumber(@PathVariable String mobile) {
+//		Optional<Person> person = personRepository.findByMobileNumberLike(mobile);
+//		return ResponseEntity.ok(person.orElseThrow(() -> new ResourceNotFoundException("person not found " + mobile)));
+//	}
 }
